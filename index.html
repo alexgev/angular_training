@@ -1,21 +1,167 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
     <title>Document</title>
+    <style>
+        .class1 {
+            background-color: red;
+        }
+        .class2 {
+            background-color: green;
+        }
+    </style>
 </head>
-<body>
+
+<body ng-controller="appCtrl">
     <script src="node_modules/angular/angular.js"></script>
-    <script>
-        var app = angular.module('app', []);
-        app.controller('appCtrl', function($scope) {
-            $scope.hello = 'hello';
-        })
-    </script>
-    <div ng-controller="appCtrl">
-        {{ hello }}
+    <script src="main.js"></script>
+    <div class="container">
+        <select ng-model="mode" ng-options="item.display for item in options track by item.value"></select>
+        
+        <div ng-switch on="mode.value" style="margin-top: 20px;">
+            
+            <table class="table" ng-switch-when="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.value }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <ul class="list-group" ng-switch-when="list">
+                <li ng-repeat="item in items" class="list-group-item list-group-item-info">{{ item.name }}: {{ item.value }}</li>
+            </ul>
+            
+            <ol class="list-group" ng-switch-when="budges">
+                <li ng-repeat="item in items" class="list-group-item">
+                    <span class="badge">{{ item.value }}</span>
+                    {{ item.name }}
+                </li>
+            </ol>
+        </div>
+        
     </div>
+
+
+
+    <!-- <div class="btn-group">
+        <button class="btn btn-default" ng-click="showTable()">Table</button>
+        <button class="btn btn-default" ng-click="showList()">List</button>
+    </div>
+    <ng-include src="url"></ng-include> -->
+
+
+
+
+
+
+    <!-- <h3>HTML Element</h3>
+    <ng-include src="url"></ng-include>
+
+    <h3>HTML Attribute</h3>
+    <span ng-include="url"></span>
+
+    <h3>Css Class</h3>
+    <span class="ng-include: url;"></span> -->
+
+
+
+
+
+
+
+
+    <!-- <select ng-model="selected" ng-options="item.prop1 for item in items track by item.prop2"></select>
+
+    selected text: {{ selected.prop1 }}
+    selected value: {{ selected.prop2 }} -->
+
+
+
+
+
+
+
+
+
+
+    <!-- <p ng-repeat-start="item in items">
+        № {{ $index + 1 }}
+    </p>
+    <span>
+        {{ item.name }}
+    </span>
+    <span>
+        {{ item.age }}
+    </span>
+    <hr ng-repeat-end /> -->
+
+
+
+    <!-- <h1>{{ item.name }}</h1>
+    <ul>
+        <li ng-repeat="item in items" ng-class="($even) ? 'class1' : 'class2'">
+            <span ng-if="$first">First</span>
+            <span ng-if="$last">Last</span>
+            {{ $index + 1 }}: <span ng-repeat="(key, value) in item">{{ key }} = {{ value }} </span>
+        </li>
+    </ul> -->
+
+
+
+    <!-- <button class="btn btn-default">Default</button>
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-success">Success</button>
+    <button class="btn btn-warning">Warning</button>
+    <button class="btn btn-info">Info</button>
+    <button class="btn btn-danger">Danger</button> -->
+
+
+    <!-- <div class="container">
+        <h1>Планировщик курсов</h1>
+        <h3>Пользователь - {{ data.user }}. Количество курсов - {{ data.courses.length }}</h3>
+        <div>
+            <input type="text" ng-model="nameOfCourse">
+            <button ng-click="addNewCourse()">Добавить</button>
+        </div>
+        <table width="100%" style="text-align: center">
+            <thead>
+                <tr>
+                    <th>Курс</th>
+                    <th></th>
+                    <th>Пройден</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in data.courses">
+                    <td>{{ course.name }}</td>
+                    <td><input type="checkbox" ng-model="course.passed"></td>
+                    <td style="{{ setStyle(course.passed) }}">{{ showText(course.passed) }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div> -->
+
+
+    <!-- <div ng-controller="appCtrl">
+            <h1>{{ message }}</h1>
+            <input type="text" ng-model="text">
+            <button ng-click="clickHandler()">button</button>
+    </div> -->
 </body>
+
 </html>

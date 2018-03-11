@@ -1,20 +1,96 @@
-var app = angular.module('app', []);
+// var app = angular.module('app', []);
 
-app.controller('appCtrl', function($scope) {
-    $scope.items = [
-        { name: 'Item 1', value: '10' },
-        { name: 'Item 2', value: '2' },
-        { name: 'Item 3', value: '31' }
-    ];
+angular.module('app', [])
+    .controller('appCtrl', function($scope) {
+        $scope.addUser = function(newUser) {
+            $scope.message = newUser.name + ' ' + newUser.email + ' ' + newUser.agreed;
+        }
+        $scope.message = 'Ready';
+        $scope.getError = function(error) {
+            if (angular.isDefined(error)) {
+                if (error.required) {
+                    return 'Поле не должно быть пустым';
+                } else if (error.email) {
+                    return 'Введите правильный email';
+                }
+            }
+        }
+    })
 
-    $scope.options = [
-        { display: 'Таблица', value: 'table' },
-        { display: 'Список', value: 'list' },
-        { display: 'Список с маркерами', value: 'budges' },
-    ];
 
-    $scope.mode = $scope.options[0];
-})
+
+
+
+
+
+
+
+
+// angular.module('app', [])
+//     .controller('appCtrl', function($scope) {
+//         $scope.tasks = [
+//             { action: 'Task 1', complete: false, priority: "Normal" },
+//             { action: 'Task 2', complete: true, priority: "Normal" },
+//             { action: 'Task 3', complete: true, priority: "Normal" },
+//             { action: 'Task 4', complete: false, priority: "Normal" }
+//         ]
+//         $scope.addTask = function(task) {
+//             if (angular.isDefined(task) &&
+//                 angular.isDefined(task.action) &&
+//                 angular.isDefined(task.priority)) {
+//                 $scope.tasks.push({
+//                     action: task.action,
+//                     complete: false,
+//                     priority: task.priority
+//                 })
+//             }
+//         }
+//     })
+
+
+
+
+
+// app.controller('appCtrl', function($scope) {
+//     $scope.selectedClass = 'lightGreen';
+
+//     $scope.classNames = [
+//         { displayName: 'Light Green', value: "lightGreen" },
+//         { displayName: 'Light Blue', value: "lightBlue" },
+//         { displayName: 'Light Coral', value: "lightCoral" }
+//     ]
+// })
+
+
+
+
+
+
+// app.controller('appCtrl', function($scope) {
+//     $scope.hideElem1 = false;
+//     $scope.hideElem2 = false;
+//     $scope.hideElem3 = false;
+// })
+
+
+
+
+
+// app.controller('appCtrl', function($scope) {
+//     $scope.items = [
+//         { name: 'Item 1', value: '10' },
+//         { name: 'Item 2', value: '2' },
+//         { name: 'Item 3', value: '31' }
+//     ];
+
+//     $scope.options = [
+//         { display: 'Таблица', value: 'table' },
+//         { display: 'Список', value: 'list' },
+//         { display: 'Список с маркерами', value: 'budges' },
+//     ];
+
+//     $scope.mode = $scope.options[0];
+// })
 
 
 

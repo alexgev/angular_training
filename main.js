@@ -1,21 +1,176 @@
 // var app = angular.module('app', []);
 
-angular.module('app', [])
-    .controller('appCtrl', function($scope) {
-        $scope.addUser = function(newUser) {
-            $scope.message = newUser.name + ' ' + newUser.email + ' ' + newUser.agreed;
-        }
-        $scope.message = 'Ready';
-        $scope.getError = function(error) {
-            if (angular.isDefined(error)) {
-                if (error.required) {
-                    return 'Поле не должно быть пустым';
-                } else if (error.email) {
-                    return 'Введите правильный email';
-                }
-            }
-        }
-    })
+var app = angular.module('app', []);
+
+app.controller('baseCtrl', function($scope, $interval) {
+	$scope.counter = 0;
+
+	$scope.$watch('counter', function(newValue, oldValue) {
+		console.log('New Value = ', newValue, " Old Value = ", oldValue);
+	})
+	$scope.increment = function(val) {
+		$scope.counter += val;
+	}
+	setInterval(function() {
+		$scope.$apply(function() {
+			$scope.counter++;
+		})
+	}, 1000);
+	console.log($scope.$$watchers);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.controller('baseCtrl', function($scope, $interval) {
+// 	$scope.counter = 0;
+
+// 	$scope.$watch('counter', function(newValue, oldValue) {
+// 		console.log('New Value = ', newValue, " Old Value = ", oldValue);
+// 	})
+// 	$scope.increment = function(val) {
+// 		$scope.counter += val;
+// 	}
+// 	setInterval(function() {
+// 		$scope.counter++;
+// 		$scope.$digest();
+// 	}, 1000);
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.controller('baseCtrl', function($scope, $interval) {
+// 	$scope.counter = 0;
+
+// 	$scope.$watch('counter', function(newValue, oldValue) {
+// 		console.log('New Value = ', newValue, " Old Value = ", oldValue);
+// 	})
+// 	$scope.increment = function(val) {
+// 		$scope.counter += val;
+// 	}
+// 	// $interval(function() {
+// 	// 	$scope.counter++;
+// 	// }, 1000);
+// 	console.log($scope.$$watchers);
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.controller('testCtrl', function($scope) {
+//     $scope.send = function() {
+//         $scope.$emit('sendMessage', {
+//             message: $scope.messageInput
+//         })
+//     }
+//     $scope.$on('sendMessage', function(event, args) {
+//         $scope.info = args.message;
+//     })
+// })
+
+
+
+
+
+
+
+
+
+
+// app.controller('senderCtrl', function($scope, $rootScope) {
+//     $scope.send = function() {
+//         console.log('send');
+//         $rootScope.$broadcast('messageEvent', {
+//             message: $scope.messageInput
+//         })
+//     }
+// })
+
+// app.controller('receiverCtrl', function($scope) {
+//     $scope.$on('messageEvent', function(event, args) {
+//         console.log(event);
+//         $scope.info = args.message;
+//     })
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.controller('baseCtrl', function($scope) {
+//     $scope.value = 'base value';
+//     $scope.changeValue1 = function() {
+//         $scope.value = 'changeValue1' + new Date().toLocaleTimeString();
+//     }
+// })
+
+// app.controller('derivedCtrl', function($scope) {
+//     $scope.changeValue2 = function() {
+//         $scope.value = 'changeValue2' + new Date().toLocaleTimeString();
+//     }
+// })
+
+
+
+
+
+
+
+
+
+// angular.module('app', [])
+//     .controller('appCtrl', function($scope) {
+//         $scope.addUser = function(newUser) {
+//             $scope.message = newUser.name + ' ' + newUser.email + ' ' + newUser.agreed;
+//         }
+//         $scope.message = 'Ready';
+//         $scope.getError = function(error) {
+//             if (angular.isDefined(error)) {
+//                 if (error.required) {
+//                     return 'Поле не должно быть пустым';
+//                 } else if (error.email) {
+//                     return 'Введите правильный email';
+//                 }
+//             }
+//         }
+//     })
 
 
 

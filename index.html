@@ -9,39 +9,27 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
     <title>Document</title>
     <style>
-        form .ng-pristine {
-            border: 1px dotted grey;
-        }
-        form .ng-invalid.ng-dirty {
-            background-color: lightpink;
-        }
-        form .ng-valid.ng-dirty {
-            background-color: lightgreen;
-        }
-        form .ng-invalid-email {
-            color: red;
-        }
-        span.summary.ng-invalid {
-            color: red;
-            font-weight: bold;
-        }
-        span.summary.ng-valid {
-            color: green;
-        }
-        div.error {
-            color: red;
-            font-weight: bold;
-        }
+
     </style>
 </head>
 
 <body>
     <script src="node_modules/angular/angular.js"></script>
+
+    <script src="customServices.js"></script>
+    <script src="directiveModule.js"></script>
+
     <script src="main.js"></script>
 
-    <div ng-controller="baseCtrl">
-        {{ counter }}
-        <button ng-click="increment(1)">+1</button>
+    <div ng-controller="defaultCtrl">
+        <div class="well">
+            <div class="btn-group" tri-button counter="buttons.totalClicks" source="button.names">
+                <button class="btn btn-default" ng-repeat="name in buttons.names">
+                    {{ name }}
+                </button>
+            </div>
+            <h5>TotalClicks: {{ buttons.totalClicks }}</h5>
+        </div>
     </div>
 
 

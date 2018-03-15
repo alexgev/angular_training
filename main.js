@@ -1,22 +1,45 @@
 // var app = angular.module('app', []);
 
-var app = angular.module('app', []);
+var app = angular.module('app', ['directiveModule', 'customServices']);
 
-app.controller('appCtrl', function($scope) {
-	$scope.items = [
-		{ name: 'Item 1', price: 10.9, category: 'Category 1', count: 10, tax: 1.12, expiration: 2 },
-		{ name: 'Item 2', price: 1.1, category: 'Category 1', count: 20, tax: 1.55, expiration: 5 },
-		{ name: 'Item 3', price: 2.6, category: 'Category 2', count: 33, tax: 0.12, expiration: 3 },
-		{ name: 'Item 4', price: 17.5, category: 'Category 3', count: 1, tax: 3.1, expiration: 9 },
-		{ name: 'Item 5', price: 52.6, category: 'Category 3', count: 4, tax: 4.7, expiration: 15 },
-		{ name: 'Item 6', price: 102.6, category: 'Category 2', count: 5, tax: 0.32, expiration: 40 },
-		{ name: 'Item 7', price: 112.6, category: 'Category 2', count: 9, tax: 0.62, expiration: 60 },
-		{ name: 'Item 8', price: 8.6, category: 'Category 1', count: 55, tax: 0.92, expiration: 55 },
-	];
-	$scope.sortFunc = function(value) {
-		return value.expiration < 10 ? 0 : value.price;
+app.controller('defaultCtrl', function($scope, logService, errorService) {
+	$scope.buttons = {
+		names: ['button 1', 'button 2', 'button 3'],
+		totalClicks: 0		
 	}
+	$scope.$watch('buttons.totalClicks', function(newValue) {
+		if (newValue < 5) {
+			logService.log('Total click count: ' + newValue);
+		} else {
+			errorService.log('Total click count: ' + newValue);
+		}
+	})
 })
+
+
+
+
+
+
+
+
+
+
+// app.controller('appCtrl', function($scope) {
+// 	$scope.items = [
+// 		{ name: 'Item 1', price: 10.9, category: 'Category 1', count: 10, tax: 1.12, expiration: 2 },
+// 		{ name: 'Item 2', price: 1.1, category: 'Category 1', count: 20, tax: 1.55, expiration: 5 },
+// 		{ name: 'Item 3', price: 2.6, category: 'Category 2', count: 33, tax: 0.12, expiration: 3 },
+// 		{ name: 'Item 4', price: 17.5, category: 'Category 3', count: 1, tax: 3.1, expiration: 9 },
+// 		{ name: 'Item 5', price: 52.6, category: 'Category 3', count: 4, tax: 4.7, expiration: 15 },
+// 		{ name: 'Item 6', price: 102.6, category: 'Category 2', count: 5, tax: 0.32, expiration: 40 },
+// 		{ name: 'Item 7', price: 112.6, category: 'Category 2', count: 9, tax: 0.62, expiration: 60 },
+// 		{ name: 'Item 8', price: 8.6, category: 'Category 1', count: 55, tax: 0.92, expiration: 55 },
+// 	];
+// 	$scope.sortFunc = function(value) {
+// 		return value.expiration < 10 ? 0 : value.price;
+// 	}
+// })
 
 
 

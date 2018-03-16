@@ -16,12 +16,27 @@
 <body>
     <script src="node_modules/angular/angular.js"></script>
 
-    <script src="customServices.js"></script>
-    <script src="directiveModule.js"></script>
+    <!-- <script src="customServices.js"></script>
+    <script src="directiveModule.js"></script> -->
 
     <script src="main.js"></script>
 
     <div ng-controller="defaultCtrl">
+        <input type="text" ng-model="word">
+        <span habra-habr-work="word" habra="NehabraParent">
+            <span habra-habr-work="word" habra="NehabraChild"></span>
+        </span>
+        <pre>{{ log }}</pre>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- <div ng-controller="defaultCtrl">
         <div class="well">
             <div class="btn-group" tri-button counter="buttons.totalClicks" source="button.names">
                 <button class="btn btn-default" ng-repeat="name in buttons.names">
@@ -30,7 +45,7 @@
             </div>
             <h5>TotalClicks: {{ buttons.totalClicks }}</h5>
         </div>
-    </div>
+    </div> -->
 
 
 

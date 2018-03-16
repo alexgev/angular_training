@@ -1,20 +1,59 @@
 // var app = angular.module('app', []);
 
-var app = angular.module('app', ['directiveModule', 'customServices']);
-
-app.controller('defaultCtrl', function($scope, logService, errorService) {
-	$scope.buttons = {
-		names: ['button 1', 'button 2', 'button 3'],
-		totalClicks: 0		
-	}
-	$scope.$watch('buttons.totalClicks', function(newValue) {
-		if (newValue < 5) {
-			logService.log('Total click count: ' + newValue);
-		} else {
-			errorService.log('Total click count: ' + newValue);
-		}
-	})
+var app = angular.module('app', []);
+app.controller('defaultCtrl', function($scope) {
+	$scope.word = "Habrahabra";
+	$scope.log = '';
 })
+app.directive('habraHabrNotWork', function() {
+	return {
+		link: function(scope, element, attrs) {
+			element.html("<div>{{"+attrs.habraHabrWork+"}}"+attrs.habra+"</div>");
+		}
+	}
+})
+app.directive('habraHabrWork', function() {
+	return {
+		compile: function(templateElement, templateAttrs) {
+			templateElement.prepend("<div>{{"+templateAttrs.habraHabrWork+"}}"+templateAttrs.habra+"</div>");
+			return {
+				pre: function ($scope, element, attrs, controller) {
+					$scope.log+=templateAttrs.habra +' preLink \n';
+				},
+				post: function ($scope, element, attrs, controller) {
+					$scope.log+=templateAttrs.habra +' postLink \n';
+				}
+			}
+		},
+		link: function(scope, element, attrs) {
+
+		}
+	}
+})
+
+
+
+
+
+
+
+
+
+// var app = angular.module('app', ['directiveModule', 'customServices']);
+
+// app.controller('defaultCtrl', function($scope, logService, errorService) {
+// 	$scope.buttons = {
+// 		names: ['button 1', 'button 2', 'button 3'],
+// 		totalClicks: 0		
+// 	}
+// 	$scope.$watch('buttons.totalClicks', function(newValue) {
+// 		if (newValue < 5) {
+// 			logService.log('Total click count: ' + newValue);
+// 		} else {
+// 			errorService.log('Total click count: ' + newValue);
+// 		}
+// 	})
+// })
 
 
 
